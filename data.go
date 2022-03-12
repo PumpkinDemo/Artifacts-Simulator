@@ -22,6 +22,28 @@ var statTypeZN = map[StatType]string{
 	HEALING_BONUS:      "治疗加成",
 }
 
+var ZNstatType = map[string]StatType{
+	"":        NIL,
+	"攻击力百分比":  ATK_big,
+	"攻击力":     ATK,
+	"生命值百分比":  HP_big,
+	"生命值":     HP,
+	"防御力百分比":  DEF_big,
+	"防御力":     DEF,
+	"暴击率":     CRIT_RATE,
+	"暴击伤害":    CRIT_DMG,
+	"充能效率":    ENERGY_RECHARGE,
+	"元素精通":    ELEMENTAL_MASTARY,
+	"水元素伤害加成": HYDRO_DMG_BONUS,
+	"火元素伤害加成": PYRO_DMG_BONUS,
+	"岩元素伤害加成": GEO_DMG_BONUS,
+	"风元素伤害加成": ANEMO_DMG_BONUS,
+	"雷元素伤害加成": ELECTRO_DMG_BONUS,
+	"冰元素伤害加成": CRYO_DMG_BONUS,
+	"物理伤害加成":  PHYSICAL_DMG_BONUS,
+	"治疗加成":    HEALING_BONUS,
+}
+
 var artifactSetZN = map[SetType]string{
 	Ocean_Hued_Clam:           "海染砗磲",
 	Husk_of_Opulent_Dreams:    "华馆梦醒形骸记",
@@ -43,6 +65,29 @@ var artifactSetZN = map[SetType]string{
 	Noblesse_Oblige:           "昔日宗室之仪",
 	Wanderers_Troupe:          "流浪大地的乐团",
 	Gladiators_Finale:         "角斗士的终幕礼",
+}
+
+var ZNartifactSet = map[string]SetType{
+	"海染砗磲":    Ocean_Hued_Clam,
+	"华馆梦醒形骸记": Husk_of_Opulent_Dreams,
+	"绝缘之旗印":   Emblem_of_Severed_Fate,
+	"追忆之注连":   Shimenawas_Reminiscence,
+	"苍白之火":    Pale_Flame,
+	"千岩牢固":    Tenacity_of_the_Millelith,
+	"沉沦之心":    Heart_of_Depth,
+	"冰风迷途的勇士": Blizzard_Strayer,
+	"炽烈的炎之魔女": Crimson_Witch_of_Flames,
+	"渡过烈火的贤人": Lavawalker,
+	"如雷的盛怒":   Thundering_Fury,
+	"平息鸣雷的尊者": Thundersoother,
+	"逆飞的流星":   Retracing_Bolide,
+	"悠古的磐岩":   Archaic_Petra,
+	"翠绿之影":    Viridescent_Venerer,
+	"被怜爱的少女":  Maiden_Beloved,
+	"染血的骑士道":  Bloodstained_Chivalry,
+	"昔日宗室之仪":  Noblesse_Oblige,
+	"流浪大地的乐团": Wanderers_Troupe,
+	"角斗士的终幕礼": Gladiators_Finale,
 }
 
 var artifactInDomains = map[string][]SetType{
@@ -225,6 +270,14 @@ var slotHanzi = [5]string{
 	"时之沙",
 	"空之杯",
 	"理之冠",
+}
+
+var ZNslotType = map[string]SlotType{
+	"生之花": Flower_of_Life,
+	"死之羽": Plume_of_Death,
+	"时之沙": Sands_of_Eon,
+	"空之杯": Goblet_of_Eonothem,
+	"理之冠": Circlet_of_Logos,
 }
 
 var setOralHanzi = [20]string{
@@ -480,10 +533,10 @@ var subStatMap = map[StatType][]float32{
 
 // 五星圣遗物升级所需经验
 var experiencesToLevelUp = [...]int{
-	3000, 3725, 4425, 5150, 5900, 
-    6675, 7500, 8350, 9225, 10125, 
-    11050, 12025, 13025, 15150, 17600,
-    20375, 23500, 27050, 31050, 35575,
+	3000, 3725, 4425, 5150, 5900,
+	6675, 7500, 8350, 9225, 10125,
+	11050, 12025, 13025, 15150, 17600,
+	20375, 23500, 27050, 31050, 35575,
 }
 
 // 不同星级零级圣遗物狗粮对应经验值
@@ -493,5 +546,9 @@ var experienceOfDifferentStarsLv0 = [...]int{
 
 // 五星不同级别圣遗物狗粮化经验
 var experience5StarAsGarbage = [...]int{
-    3780, 6180, 9160, 12700, 16820, 21540, 26880, 32880, 39560, 46940, 55040, 63880, 73500, 83920, 96040, 110120, 126420, 145220, 166860, 191700, 220160,
+	3780, 6180, 9160, 12700, 16820,
+	21540, 26880, 32880, 39560, 46940,
+	55040, 63880, 73500, 83920, 96040,
+	110120, 126420, 145220, 166860, 191700,
+	220160,
 }

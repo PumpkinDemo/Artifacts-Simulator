@@ -1,0 +1,7 @@
+curl -X POST 39.103.229.106:8080/gain \
+-H 'Content-Type: application/json' \
+-d '{"domain":"Peak of Vindagnyr", "resin":20}'
+
+curl -X POST 39.103.229.106:8080/enhance \
+-H 'Content-Type: application/json' \
+-d '{"dogFoods":[{"stars":5, "lv": 20}], "embryo":{"套装":"昔日宗室之仪","Stars":5,"Lv":0,"Name":"Royal Masque","Exp":0,"Slot":4,"MainStat":{"词条":"防御力百分比","数值":8.7},"SubStat":[{"词条":"防御力","数值":23.15},{"词条":"充能效率","数值":4.53},{"词条":"元素精通","数值":18.65},{"词条":"","数值":0}]}}'

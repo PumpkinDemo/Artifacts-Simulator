@@ -1,0 +1,37 @@
+{
+    "flower": [
+        "HP"
+    ],
+    "feather": [
+        "ATK"
+    ],
+    "sand": [
+        "ATK%",
+        "EM",
+        "ER",
+        "HP%",
+        "DEF%"
+    ],
+    "cup": [
+        "ELECTRO BONUS",
+        "PYRO BONUS",
+        "HYDRO BONUS",
+        "CRYO BONUS",
+        "ANEMO BONUS",
+        "GEO BONUS",
+        "ATK%",
+        "PHYSICAL BONUS",
+        "HP%",
+        "DEF%",
+        "EM"
+    ],
+    "head": [
+        "CRIT RATE",
+        "ATK%",
+        "CRIT DMG",
+        "HP%",
+        "DEF%",
+        "HEALING BONUS",
+        "EM"
+    ]
+}
