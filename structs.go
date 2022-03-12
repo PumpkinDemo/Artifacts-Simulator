@@ -1,6 +1,9 @@
 package main
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type StatType int32
 
@@ -70,14 +73,19 @@ type Artifact struct {
 	Stars    int32
 	Lv       int32
 	Name     string
+	Exp      int32
 	Set      SetType
 	Slot     SlotType
 	MainStat Stat
 	SubStat  [4]Stat
-	Exp      int32
 }
 
-func (s *Stat) MarshalJSON() ([]byte, error) {
+type DogFood struct {
+	Stars int32
+	Lv    int32
+}
+
+func (s Stat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		Type  string  `json:"词条"`
 		Value float32 `json:"数值"`
@@ -87,13 +95,66 @@ func (s *Stat) MarshalJSON() ([]byte, error) {
 	})
 }
 
-func (a *Artifact) MarshalJSON() ([]byte, error) {
-	type t Artifact
+func (a Artifact) MarshalJSON() ([]byte, error) {
+	// type t Artifact
+	// fmt.Println("marshal a Artifact")
 	return json.Marshal(&struct {
-		Set string
-		*t
+		Stars    int32
+		Lv       int32
+		Set      string `json:"套装"`
+		Slot     string `json:"位置"`
+		Name     string
+		Exp      int32
+		MainStat Stat
+		SubStat  [4]Stat
 	}{
-		Set: artifactSetZN[a.Set],
-		t:   (*t)(a),
+		Stars:    a.Stars,
+		Lv:       a.Lv,
+		Set:      artifactSetZN[a.Set],
+		Slot:     slotHanzi[a.Slot],
+		Name:     a.Name,
+		Exp:      a.Exp,
+		MainStat: a.MainStat,
+		SubStat:  a.SubStat,
 	})
+}
+
+func (s *Stat) UnmarshalJSON(data []byte) error {
+	tmp := struct {
+		Type  string  `json:"词条"`
+		Value float32 `json:"数值"`
+	}{}
+	err := json.Unmarshal(data, &tmp)
+	s.Type = ZNstatType[tmp.Type]
+	s.Value = tmp.Value
+	return err
+}
+
+func (a *Artifact) UnmarshalJSON(data []byte) error {
+	// type T Artifact
+	tmp := struct {
+		Stars    int32
+		Lv       int32
+		Set      string `json:"套装"`
+		Slot     string `json:"位置"`
+		Name     string
+		Exp      int32
+		MainStat Stat
+		SubStat  [4]Stat
+	}{}
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		fmt.Printf("error when unmarshal Artifact: %s\n", err)
+	}
+
+	a.Stars = tmp.Stars
+	a.Lv = tmp.Lv
+	a.Name = tmp.Name
+	a.Exp = tmp.Exp
+	a.Set = ZNartifactSet[tmp.Set]
+	a.Slot = ZNslotType[tmp.Slot]
+	a.MainStat = tmp.MainStat
+	a.SubStat = tmp.SubStat
+
+	return err
 }
