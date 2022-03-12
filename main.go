@@ -4,18 +4,25 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+	"time"
 )
+
+// 获取随机数
+func getRandomInteger(i int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(i)
+}
 
 // 掷骰子
 func dice(probability float32) bool {
-	randInt := rand.Intn(100)
+	randInt := getRandomInteger(100)
 	return randInt < int(100*probability)
 }
 
 // 生成指定圣遗物
 func newArtifact(stars int32, set SetType) Artifact {
 	// 随机生成部位
-	var slot SlotType = SlotType(rand.Intn(5))
+	var slot SlotType = SlotType(getRandomInteger(5))
 	var name string = setSlotName[set][slot]
 
 	// 随机生成主词条
@@ -33,7 +40,7 @@ func newArtifact(stars int32, set SetType) Artifact {
 			Value: mainStatMap[ATK][0],
 		}
 	case Sands_of_Eon:
-		weight = rand.Intn(sandsMainStatWeightTotal)
+		weight = getRandomInteger(sandsMainStatWeightTotal)
 		for k, v := range sandsMainStatWeightMap {
 			if v <= weight {
 				weight -= v
@@ -46,7 +53,7 @@ func newArtifact(stars int32, set SetType) Artifact {
 			}
 		}
 	case Goblet_of_Eonothem:
-		weight = rand.Intn(gobletMainStatWeightTotal)
+		weight = getRandomInteger(gobletMainStatWeightTotal)
 		for k, v := range gobletMainStatWeightMap {
 			if v <= weight {
 				weight -= v
@@ -59,7 +66,7 @@ func newArtifact(stars int32, set SetType) Artifact {
 			}
 		}
 	case Circlet_of_Logos:
-		weight = rand.Intn(circletMainStatWeightTotal)
+		weight = getRandomInteger(circletMainStatWeightTotal)
 		for k, v := range circletMainStatWeightMap {
 			if v <= weight {
 				weight -= v
@@ -99,8 +106,8 @@ func newArtifact(stars int32, set SetType) Artifact {
 	}
 
 	for i := 0; i < subStatCount; i++ {
-		var weight = rand.Intn(totalWeight)
-		var subStatRank = rand.Intn(4)
+		var weight = getRandomInteger(totalWeight)
+		var subStatRank = getRandomInteger(4)
 		var chosenStat StatType
 		for k, v := range weightMap {
 			if v <= weight {
@@ -126,6 +133,7 @@ func newArtifact(stars int32, set SetType) Artifact {
 		Name:     name,
 		MainStat: mainStat,
 		SubStat:  subStats,
+		Exp:      0,
 	}
 }
 
@@ -152,7 +160,7 @@ func gainArtifacts(domain string, resin int32) []Artifact {
 	garbages := make([]Artifact, 0, count)
 
 	for i := 0; i < count; i++ {
-		var setIndex = rand.Intn(2)
+		var setIndex = getRandomInteger(2)
 		var setType = artifactInDomains[domain][setIndex]
 		// artifacts.PushBack(newArtifact(5, setType))
 		garbages = append(garbages, newArtifact(5, setType))
@@ -175,8 +183,91 @@ func (a Artifact) Stringify() string {
 	return res
 }
 
-func (a Artifact) levelUp() {
+// 增加副词条
+func (a *Artifact) addOneSubStat() {
+    weightMap := make(map[StatType]int)
+    var totalWeight = subStatWeightTotal
+    var indexUninitializedSubStat = -1
 
+	// 剔除主词条、副词条中的权重
+    for k, v := range subStatWeightMap {
+        if a.MainStat.Type == k {
+            totalWeight -= v
+            continue
+        }
+        weightMap[k] = v
+    }
+
+    for k, v := range a.SubStat {
+        if v.Type != NIL {
+            var weight = weightMap[v.Type]
+            delete(weightMap, v.Type)
+            totalWeight -= weight
+        } else {
+            indexUninitializedSubStat = k
+        }
+    }
+
+	// 不满四词条，按权重增加一个词条
+    var subStatRank = getRandomInteger(4)
+    if indexUninitializedSubStat >= 0 {
+        var weight = getRandomInteger(totalWeight)
+        for k, v := range weightMap {
+            if v <= weight {
+                weight -= v
+            } else {
+                a.SubStat[indexUninitializedSubStat] = Stat{
+                    Type: k,
+                    Value: subStatMap[k][subStatRank],
+                }
+                break
+            }
+        }
+    } else {
+		// 满四词条等概率增加某词条
+        var chosenIndex = getRandomInteger(4)
+        var stat = a.SubStat[chosenIndex]
+        a.SubStat[chosenIndex].Value += subStatMap[stat.Type][subStatRank]
+    }
+}
+
+// 圣遗物升级
+func (a *Artifact) levelUp(dogFood []Artifact) {
+	// 决定强化倍数
+    var multiplier = 1
+    var randInt = getRandomInteger(100)
+    if randInt >= int(100 * experienceOnce) {
+        if randInt < int(100 * (1 - experienceFifth)) {
+            multiplier = 2
+        } else {
+            multiplier = 5
+        }
+    }
+
+	// 获得总经验数
+    var exp = int(a.Exp)
+    for _, v := range dogFood {
+        if v.Stars == 5 {
+            exp += experience5StarAsGarbage[v.Lv]
+        } else {
+            exp += experienceOfDifferentStarsLv0[v.Stars]
+        }    
+    }
+    exp *= multiplier
+
+	// 圣遗物逐级升级
+    for exp > 0 && a.Lv < 20 {
+        var expToLevelUp = experiencesToLevelUp[a.Lv]
+        if exp >= expToLevelUp {
+            a.Lv += 1
+            if a.Lv % 4 == 0 {
+                a.addOneSubStat()
+            }
+        } else {
+            a.Exp = int32(exp)
+        }
+        exp -= expToLevelUp
+    }
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {

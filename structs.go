@@ -74,6 +74,7 @@ type Artifact struct {
 	Slot     SlotType
 	MainStat Stat
 	SubStat  [4]Stat
+	Exp      int32
 }
 
 func (s *Stat) MarshalJSON() ([]byte, error) {
