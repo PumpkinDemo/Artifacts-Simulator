@@ -5,13 +5,13 @@
         class="language-select"
         v-model="language"
         :placeholder="locale('Please select a language', language)"
+        @change="handleLanguageChange"
       >
         <el-option
           v-for="item in languageOptions"
           :key="item.value"
           :label="item.label"
           :value="item.value"
-          @change="handleLanguageChange"
         >
         </el-option>
       </el-select>
@@ -22,13 +22,13 @@
         class="domain-select"
         v-model="domain"
         :placeholder="locale('Please select a domain', language)"
+        @change="handleDomainChange"
       >
         <el-option
           v-for="item in domainOptions"
           :key="item.value"
           :label="item.label"
           :value="item.value"
-          @change="handleLanguageChange"
         >
         </el-option>
       </el-select>
@@ -56,14 +56,16 @@ export default class Header extends Vue {
 
   locale = locale;
 
-  store = this.$store;
-
-  language = this.store.getters.language;
+  language = this.$store.getters.language;
 
   domain = "";
 
   handleLanguageChange(lan: Language) {
-    this.store.commit("alterLanguage", lan);
+    this.$store.commit("alterLanguage", lan);
+  }
+
+  handleDomainChange(domain: string){
+    this.$store.commit("alterDomain", domain);
   }
 }
 </script>

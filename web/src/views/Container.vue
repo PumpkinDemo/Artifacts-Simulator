@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <TabF/>
+    <TabF v-if="type === 'TabF'" @pressF="pressF"/>
   </div>
 </template>
 
@@ -13,11 +13,17 @@ import TabF from "../components/TabF.vue";
     TabF
   }
 })
-export default class Container extends Vue {}
+export default class Container extends Vue {
+  type = "TabF"
+  pressF(){
+    this.type = "ConsumeResin"
+  }
+}
 </script>
 
 <style scoped>
 .container {
   min-height: 600px;
+  width: 100%;
 }
 </style>
