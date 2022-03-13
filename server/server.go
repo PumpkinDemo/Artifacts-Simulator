@@ -72,6 +72,10 @@ func artifactEnhancingHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(artifact2json(a))
 }
 
+func pingHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "pong")
+}
+
 func main() {
 
 	logger := log.New(os.Stdout, "[http] ", log.LstdFlags)
@@ -80,6 +84,7 @@ func main() {
 	http.HandleFunc("/", HelloHandler)
 	http.HandleFunc("/gain", gainArtifactsHandler)
 	http.HandleFunc("/enhance", artifactEnhancingHandler)
+	http.HandleFunc("/ping", pingHandler)
 	http.ListenAndServe("0.0.0.0:8080", nil)
 
 }

@@ -1,9 +1,11 @@
 <template>
   <div class="useResin">
     <div class="useResin-block useResin-block1" @click="useResin(20)">
-        {{text20Resin}}
+      {{ text20Resin }}
     </div>
-    <div class="useResin-block useResin-block2" @click="useResin(40)">{{text40Resin}}</div>
+    <div class="useResin-block useResin-block2" @click="useResin(40)">
+      {{ text40Resin }}
+    </div>
   </div>
 </template>
 
@@ -14,21 +16,30 @@ import { Language } from "../type";
 
 @Component({})
 export default class UseResin extends Vue {
-    get language(){
-        return this.$store.getters.language;
-    }
+  get language() {
+    return this.$store.getters.language;
+  }
 
-    get text20Resin(){
-        return locale("Use 20 fragile resins", this.language);
-    }
+  get text20Resin() {
+    return locale("Use 20 fragile resins", this.language);
+  }
 
-    get text40Resin(){
-        return locale("Use a condensed resin", this.language);
-    }
+  get text40Resin() {
+    return locale("Use a condensed resin", this.language);
+  }
 
-    useResin(resins: 20 | 40){
-        
-    }
+  useResin(resins: 20 | 40) {
+    console.log("use resin", resins)
+    let domain = this.$store.getters.domain || 'Domain of Guyun'
+    fetch('/gain', {
+      method: 'post',
+      body: JSON.stringify({ resin: resins, domain:domain })
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+    })
+  }
 }
 </script>
 
@@ -58,24 +69,24 @@ export default class UseResin extends Vue {
 }
 
 .useResin {
-    padding-top: 400px;
-    &-block{
-        display: inline-block;
-        min-height: 30px;
-        line-height: 30px;
-        font-size: 20px;
-        font-weight: bold;
-        width: 250px;
-        background: rgba(255, 255, 255, .3);
-        margin: auto;
-        padding: 15px;
-    }
-    &-block1{
-        margin-right: 50px;
-        animation: twinkle1 4s ease-in-out infinite;
-    }
-    &-block2{
-        animation: twinkle2 4s ease-in-out infinite;
-    }
+  padding-top: 400px;
+  &-block {
+    display: inline-block;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: auto;
+    padding: 15px;
+  }
+  &-block1 {
+    margin-right: 50px;
+    animation: twinkle1 4s ease-in-out infinite;
+  }
+  &-block2 {
+    animation: twinkle2 4s ease-in-out infinite;
+  }
 }
 </style>

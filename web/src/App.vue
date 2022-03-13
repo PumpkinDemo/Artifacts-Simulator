@@ -20,10 +20,10 @@ export default class App extends Vue {}
   text-align: center;
   color: #2c3e50;
   background-repeat: no-repeat;
-  background-size: 1600px, 1400px;
+  background-size: 100vw, 100vh;
   background-image: url("./assets/Irminsul.jpeg");
-  min-width: 1200px;
-  min-height: 800px;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
 nav {
