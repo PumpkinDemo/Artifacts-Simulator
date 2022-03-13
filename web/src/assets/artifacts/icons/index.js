@@ -1,13 +1,13 @@
 import flower from "./flower.png";
-import feather from "./feather.png";
-import sand from "./sand.png";
-import cup from "./cup.png";
-import head from "./head.png";
+import plume from "./plume.png";
+import sands from "./sands.png";
+import goblet from "./goblet.png";
+import circlet from "./circlet.png";
 
 export default {
   flower,
-  feather,
-  sand,
-  cup,
-  head,
+  plume,
+  sands,
+  goblet,
+  circlet,
 };

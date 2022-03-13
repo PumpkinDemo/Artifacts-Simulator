@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "流放者之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "流放者之羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "流放者怀表",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "流放者之杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "流放者头冠",
-    url: head,
+    url: circlet,
   },
   chs: "遗馈",
   effect: "流放者",

@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "勋绩之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "昭武翎羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "金铜时晷",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "盟誓金爵",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "将帅兜鍪",
-    url: head,
+    url: circlet,
   },
   chs: "千岩牢固",
   eng: "tenacityOfTheMillelith",

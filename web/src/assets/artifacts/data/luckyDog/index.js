@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "幸运儿绿花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "幸运儿鹰羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "幸运儿沙漏",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "幸运儿之杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "幸运儿银冠",
-    url: head,
+    url: circlet,
   },
   chs: "幸运儿",
   eng: "luckyDog",

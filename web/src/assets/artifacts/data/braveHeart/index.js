@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "勇士的勋章",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "勇士的期许",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "勇士的坚毅",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "勇士的壮行",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "勇士的冠冕",
-    url: head,
+    url: circlet,
   },
   chs: "勇者之心",
   effect: "勇士之心",

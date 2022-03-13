@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "历经风雪的思念",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "摧冰而行的执望",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "冰雪故园的终期",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "遍结寒霜的傲骨",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "破冰踏雪的回音",
-    url: head,
+    url: circlet,
   },
   chs: "冰风迷途的勇士",
   eng: "blizzardStrayer",

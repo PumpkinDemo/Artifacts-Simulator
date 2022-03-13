@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "魔女的炎之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "魔女常燃之羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "魔女破灭之时",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "魔女的心之火",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "焦灼的魔女帽",
-    url: head,
+    url: circlet,
   },
   chs: "炽烈的炎之魔女",
   eng: "crimsonWitch",

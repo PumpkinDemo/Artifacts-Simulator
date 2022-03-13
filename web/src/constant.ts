@@ -1,4 +1,7 @@
-export const allDomains = [
+import { artifactsData, artifactsIcon } from "./assets/artifacts";
+import { ArtifactDomain, ArtifactStat, ArtifactSet, ArtifactSlot } from "./type";
+
+export const allDomains: ArtifactDomain[] = [
   "Domain of Guyun",
   "Midsummer Courtyard",
   "Valley of Remembrance",
@@ -10,7 +13,7 @@ export const allDomains = [
   "Clear Pool and Mountain Cavern",
 ];
 
-export const allSets = [
+export const allSets: ArtifactSet[] = [
   "Ocean Hued Clam",
   "Husk of Opulent Dreams",
   "Emblem of Severed Fate",
@@ -33,7 +36,7 @@ export const allSets = [
   "Gladiators Finale",
 ];
 
-export const allStats = [
+export const allStats: ArtifactStat[] = [
   "ATK%",
   "ATK",
   "HP%",
@@ -53,3 +56,21 @@ export const allStats = [
   "PHYSICAL BONUS",
   "HEALING BONUS",
 ];
+
+export function getArtifactImage(artifact: ArtifactSet | null, name: ArtifactSlot){
+  if(artifact){
+
+  }else{
+    return 
+  }
+}
+
+export const slotMapper = {
+  abbreviate: {
+    "Circlet of Logos": "CIRCLET",
+    "Goblet of Eonothem": "GOBLET",
+    "Sands of Eon": "SANDS",
+    "Plume of Death": "PLUME",
+    "Flower of Life": "FLOWER"
+  }
+}

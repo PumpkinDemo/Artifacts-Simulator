@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "染血的铁之心",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "染血的黑之羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "骑士染血之时",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "染血骑士之杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "染血的铁假面",
-    url: head,
+    url: circlet,
   },
   chs: "染血的骑士道",
   eng: "bloodstainedChivalry",

@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "渡火者的决绝",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "渡火者的解脱",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "渡火者的煎熬",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "渡火者的醒悟",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "渡火者的智慧",
-    url: head,
+    url: circlet,
   },
   chs: "渡过烈火的贤人",
   eng: "lavaWalker",

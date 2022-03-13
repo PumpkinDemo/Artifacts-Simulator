@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "角斗士的留恋",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "角斗士的归宿",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "角斗士的希冀",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "角斗士的酣醉",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "角斗士的凯旋",
-    url: head,
+    url: circlet,
   },
   chs: "角斗士的终幕礼",
   eng: "gladiatorFinale",

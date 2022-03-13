@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "远方的少女的心",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "少女飘摇的思念",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "少女苦短的良辰",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "少女片刻的闲暇",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "少女易逝的芳颜",
-    url: head,
+    url: circlet,
   },
   chs: "被怜爱的少女",
   eng: "maidenBeloved",

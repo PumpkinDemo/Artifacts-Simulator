@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "守护之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "守护徽印",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "守护座钟",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "守护之皿",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "守护束带",
-    url: head,
+    url: circlet,
   },
   chs: "守护之心",
   eng: "defenderWill",

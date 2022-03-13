@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "平雷之心",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "平雷之羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "平雷之刻",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "平雷之器",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "平雷之冠",
-    url: head,
+    url: circlet,
   },
   chs: "平息鸣雷的尊者",
   eng: "thunderSmoother",

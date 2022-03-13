@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "磐陀裂生之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "嵯峨群峰之翼",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "星罗圭壁之晷",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "巉岩琢塑之樽",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "不动玄石之相",
-    url: head,
+    url: circlet,
   },
   chs: "悠古的磐岩",
   eng: "archaicPetra",

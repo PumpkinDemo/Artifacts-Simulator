@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "奇迹之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "奇迹之羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "奇迹之沙",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "奇迹之杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "奇迹耳坠",
-    url: head,
+    url: circlet,
   },
   chs: "奇迹",
   eng: "tinyMiracle",

@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "夏祭之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "夏祭终末",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "夏祭之刻",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "夏祭水玉",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "夏祭之面",
-    url: head,
+    url: circlet,
   },
   chs: "逆飞的流星",
   eng: "retracingBolide",

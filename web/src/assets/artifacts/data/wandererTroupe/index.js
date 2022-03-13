@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "乐团的晨光",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "琴师的箭羽",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "终幕的时计",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "吟游者之壶",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "指挥的礼帽",
-    url: head,
+    url: circlet,
   },
   chs: "流浪大地的乐团",
   eng: "wandererTroupe",

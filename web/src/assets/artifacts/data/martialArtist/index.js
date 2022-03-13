@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "武人的红花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "武人的羽饰",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "武人的水漏",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "武人的酒杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "武人的头巾",
-    url: head,
+    url: circlet,
   },
   chs: "武人",
   eng: "martialArtist",

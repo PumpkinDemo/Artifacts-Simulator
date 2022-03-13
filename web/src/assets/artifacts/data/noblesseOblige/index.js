@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "宗室之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "宗室之翎",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "宗室时计",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "宗室银瓮",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "宗室面具",
-    url: head,
+    url: circlet,
   },
   chs: "昔日宗室之仪",
   eng: "noblesseOblige",

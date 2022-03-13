@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "教官的胸花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "教官的羽饰",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "教官的怀表",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "教官的茶杯",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "教官的帽子",
-    url: head,
+    url: circlet,
   },
   chs: "教官",
   eng: "instructor",

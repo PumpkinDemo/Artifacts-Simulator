@@ -1,32 +1,32 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
   flower: {
     chs: "羁缠之花",
     url: flower,
   },
-  feather: {
+  plume: {
     chs: "思忆之矢",
-    url: feather,
+    url: plume,
   },
-  sand: {
+  sands: {
     chs: "朝露之时",
-    url: sand,
+    url: sands,
   },
-  cup: {
+  goblet: {
     chs: "祈望之心",
-    url: cup,
+    url: goblet,
   },
-  head: {
+  circlet: {
     chs: "无常之面",
-    url: head,
+    url: circlet,
   },
   chs: "追忆之注连",
-  eng: "shimenawaReminiscence",
+  eng: "shimenawasReminiscence",
   minStar: 4,
   maxStar: 5,
   effectText: {

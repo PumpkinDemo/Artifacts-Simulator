@@ -1,29 +1,29 @@
-import cup from "./cup.png";
-import feather from "./feather.png";
+import goblet from "./goblet.png";
+import plume from "./plume.png";
 import flower from "./flower.png";
-import head from "./head.png";
-import sand from "./sand.png";
+import circlet from "./circlet.png";
+import sands from "./sands.png";
 
 export default {
-  cup: {
+  goblet: {
     chs: "冒险家金杯",
-    url: cup,
+    url: goblet,
   },
-  feather: {
+  plume: {
     chs: "冒险家尾羽",
-    url: feather,
+    url: plume,
   },
   flower: {
     chs: "冒险家之花",
     url: flower,
   },
-  head: {
+  circlet: {
     chs: "冒险家头带",
-    url: head,
+    url: circlet,
   },
-  sand: {
+  sands: {
     chs: "冒险家怀表",
-    url: sand,
+    url: circlet,
   },
   chs: "冒险家",
   eng: "adventurer",

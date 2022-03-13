@@ -1,9 +1,9 @@
-import head from "./head.png";
+import circlet from "./circlet.png";
 
 export default {
-  head: {
+  sands: {
     chs: "祭水礼冠",
-    url: head,
+    url: circlet,
   },
   chs: "祭水之人",
   eng: "prayersForDestiny",
