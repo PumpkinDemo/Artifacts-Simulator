@@ -22,6 +22,28 @@ var statTypeZN = map[StatType]string{
 	HEALING_BONUS:      "治疗加成",
 }
 
+var statTypeEN = map[StatType]string{
+	NIL:                "",
+	ATK_big:            "ATK%",
+	ATK:                "ATK",
+	HP_big:             "HP%",
+	HP:                 "HP",
+	DEF_big:            "DEF%",
+	DEF:                "DEF",
+	CRIT_RATE:          "CRIT RATE",
+	CRIT_DMG:           "CRIT DMG",
+	ENERGY_RECHARGE:    "ER",
+	ELEMENTAL_MASTARY:  "EM",
+	HYDRO_DMG_BONUS:    "HYDRO BONUS",
+	PYRO_DMG_BONUS:     "PYRO BONUS",
+	GEO_DMG_BONUS:      "GEO BONUS",
+	ANEMO_DMG_BONUS:    "ANEMO BONUS",
+	ELECTRO_DMG_BONUS:  "ELECTRO BONUS",
+	CRYO_DMG_BONUS:     "CRYO BONUS",
+	PHYSICAL_DMG_BONUS: "PHYSICAL BONUS",
+	HEALING_BONUS:      "HEALING BONUS",
+}
+
 var ZNstatType = map[string]StatType{
 	"":        NIL,
 	"攻击力百分比":  ATK_big,
@@ -44,6 +66,28 @@ var ZNstatType = map[string]StatType{
 	"治疗加成":    HEALING_BONUS,
 }
 
+var ENstatType = map[string]StatType{
+	"":        NIL,
+	"ATK%":  ATK_big,
+	"ATK":     ATK,
+	"HP%":  HP_big,
+	"HP":     HP,
+	"DEF%":  DEF_big,
+	"DEF":     DEF,
+	"CRIT RATE":     CRIT_RATE,
+	"CRIT DMG":    CRIT_DMG,
+	"ER":    ENERGY_RECHARGE,
+	"EM":    ELEMENTAL_MASTARY,
+	"HYDRO BONUS": HYDRO_DMG_BONUS,
+	"PYRO BONUS": PYRO_DMG_BONUS,
+	"GEO BONUS": GEO_DMG_BONUS,
+	"ANEMO BONUS": ANEMO_DMG_BONUS,
+	"ELECTRO BONUS": ELECTRO_DMG_BONUS,
+	"CRYO BONUS": CRYO_DMG_BONUS,
+	"PHYSICAL BONUS":  PHYSICAL_DMG_BONUS,
+	"HEALING BONUS":    HEALING_BONUS,
+}
+
 var artifactSetZN = map[SetType]string{
 	Ocean_Hued_Clam:           "海染砗磲",
 	Husk_of_Opulent_Dreams:    "华馆梦醒形骸记",
@@ -56,7 +100,7 @@ var artifactSetZN = map[SetType]string{
 	Crimson_Witch_of_Flames:   "炽烈的炎之魔女",
 	Lavawalker:                "渡过烈火的贤人",
 	Thundering_Fury:           "如雷的盛怒",
-	Thundersoother:            "平息鸣雷的尊者",
+	Thundersmoother:            "平息鸣雷的尊者",
 	Retracing_Bolide:          "逆飞的流星",
 	Archaic_Petra:             "悠古的磐岩",
 	Viridescent_Venerer:       "翠绿之影",
@@ -66,6 +110,29 @@ var artifactSetZN = map[SetType]string{
 	Wanderers_Troupe:          "流浪大地的乐团",
 	Gladiators_Finale:         "角斗士的终幕礼",
 }
+
+var artifactSetEN = map[SetType]string{
+	Ocean_Hued_Clam: "Ocean Hued Clam",
+	Husk_of_Opulent_Dreams: "Husk of Opulent Dreams",
+	Emblem_of_Severed_Fate: "Emblem of Severed Fate",
+	Shimenawas_Reminiscence: "Shimenawa's Reminiscence",
+	Pale_Flame: "Pale Flame",
+	Tenacity_of_the_Millelith: "Tenacity of the Millelith",
+	Heart_of_Depth: "Heart of Depth",
+	Blizzard_Strayer: "Blizzard Strayer",
+	Crimson_Witch_of_Flames: "Crimson Witch of Flames",
+	Lavawalker: "Lavawalker",
+	Thundering_Fury: "Thundering Fury",
+	Thundersmoother: "Thundersmoother",
+	Retracing_Bolide: "Retracing Bolide",
+	Archaic_Petra: "Archaic Petra",
+	Viridescent_Venerer: "Viridescent Venerer",
+	Maiden_Beloved: "Maiden Beloved",
+	Bloodstained_Chivalry: "Bloodstained Chivalry",
+	Noblesse_Oblige: "Noblesse Oblige",
+	Wanderers_Troupe: "Wanderer's Troupe",
+	Gladiators_Finale: "Gladiator's Finale",
+  }
 
 var ZNartifactSet = map[string]SetType{
 	"海染砗磲":    Ocean_Hued_Clam,
@@ -79,7 +146,7 @@ var ZNartifactSet = map[string]SetType{
 	"炽烈的炎之魔女": Crimson_Witch_of_Flames,
 	"渡过烈火的贤人": Lavawalker,
 	"如雷的盛怒":   Thundering_Fury,
-	"平息鸣雷的尊者": Thundersoother,
+	"平息鸣雷的尊者": Thundersmoother,
 	"逆飞的流星":   Retracing_Bolide,
 	"悠古的磐岩":   Archaic_Petra,
 	"翠绿之影":    Viridescent_Venerer,
@@ -90,12 +157,35 @@ var ZNartifactSet = map[string]SetType{
 	"角斗士的终幕礼": Gladiators_Finale,
 }
 
+var ENartifactSet = map[string]SetType{
+	"Ocean Hued Clam": Ocean_Hued_Clam,
+	"Husk of Opulent Dreams": Husk_of_Opulent_Dreams,
+	"Emblem of Severed Fate": Emblem_of_Severed_Fate,
+	"Shimenawa's Reminiscence": Shimenawas_Reminiscence,
+	"Pale Flame": Pale_Flame,
+	"Tenacity of the Millelith": Tenacity_of_the_Millelith,
+	"Heart of Depth": Heart_of_Depth,
+	"Blizzard Strayer": Blizzard_Strayer,
+	"Crimson Witch of Flames": Crimson_Witch_of_Flames,
+	"Lavawalker": Lavawalker,
+	"Thundering Fury": Thundering_Fury,
+	"Thundersmoother": Thundersmoother,
+	"Retracing Bolide": Retracing_Bolide,
+	"Archaic Petra": Archaic_Petra,
+	"Viridescent Venerer": Viridescent_Venerer,
+	"Maiden Beloved": Maiden_Beloved,
+	"Bloodstained Chivalry": Bloodstained_Chivalry,
+	"Noblesse Oblige": Noblesse_Oblige,
+	"Wanderer's Troupe": Wanderers_Troupe,
+	"Gladiator's Finale": Gladiators_Finale,
+}
+
 var artifactInDomains = map[string][]SetType{
 	"Domain of Guyun": {
 		Archaic_Petra, Retracing_Bolide,
 	},
 	"Midsummer Courtyard": {
-		Thundering_Fury, Thundersoother,
+		Thundering_Fury, Thundersmoother,
 	},
 	"Valley of Remembrance": {
 		Viridescent_Venerer, Maiden_Beloved,
@@ -198,12 +288,12 @@ var setSlotName = map[SetType][]string{
 		"Omen of Thunderstorm",
 		"Thunder Summoner's Crown",
 	},
-	Thundersoother: {
-		"Thundersoother's Heart",
-		"Thundersoother's Plume",
+	Thundersmoother: {
+		"Thundersmoother's Heart",
+		"Thundersmoother's Plume",
 		"Hour of Soothing Thunder",
-		"Thundersoother's Goblet",
-		"Thundersoother's Diadem",
+		"Thundersmoother's Goblet",
+		"Thundersmoother's Diadem",
 	},
 	Retracing_Bolide: {
 		"Summer Night's Bloom",
@@ -272,12 +362,28 @@ var slotHanzi = [5]string{
 	"理之冠",
 }
 
+var slotEN = [5]string{
+	"Flower of Life",
+	"Plume of Death",
+	"Sands of Eon",
+	"Goblet of Eonothem",
+	"Circlet of Logos",
+}
+
 var ZNslotType = map[string]SlotType{
 	"生之花": Flower_of_Life,
 	"死之羽": Plume_of_Death,
 	"时之沙": Sands_of_Eon,
 	"空之杯": Goblet_of_Eonothem,
 	"理之冠": Circlet_of_Logos,
+}
+
+var ENslotType = map[string]SlotType{
+	"Flower of Life": Flower_of_Life,
+	"Plume of Death": Plume_of_Death,
+	"Sands of Eon": Sands_of_Eon,
+	"Goblet of Eonothem": Goblet_of_Eonothem,
+	"Circlet of Logos": Circlet_of_Logos,
 }
 
 var setOralHanzi = [20]string{

@@ -26,7 +26,7 @@ export default {
     url: circlet,
   },
   chs: "渡过烈火的贤人",
-  eng: "lavaWalker",
+  eng: "lavawalker",
   minStar: 4,
   maxStar: 5,
   effectText: {

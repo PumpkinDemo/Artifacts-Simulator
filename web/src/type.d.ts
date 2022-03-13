@@ -10,12 +10,34 @@ interface AppOption {
   [prop: string]: string;
 }
 
+export interface DogFood {
+  stars: number;
+  level: number;
+}
+
+export interface ArtifactStatNonnullable {
+  statType: ArtifactStatType;
+  value: number;
+}
+
+export type ArtifactStat = ArtifactStatNonnullable | null;
+export interface Artifact {
+	stars: number;
+	level: number;
+	name: string;
+	exp: number;
+	set: ArtifactSet;
+	slot: ArtifactSlot;
+	mainStat: ArtifactStat;
+	subStats: ArtifactStat[];
+}
+
 export type AppOptions = AppOption[];
 
 export type ArtifactSlot = "CIRCLET" | "GOBLET" | "SANDS" | "PLUME" | "FLOWER";
 
-export type ArtifactSet = "Ocean Hued Clam" | "Husk of Opulent Dreams" | "Emblem of Severed Fate" | "Shimenawas Reminiscence" | "Pale Flame" | "Tenacity of the Millelith" | "Heart of Depth" | "Blizzard Strayer" | "Crimson Witch of Flames" | "Lavawalker" | "Thundering Fury" | "Thundersoother" | "Retracing Bolide" | "Archaic Petra" | "Viridescent Venerer" | "Maiden Beloved" | "Bloodstained Chivalry" | "Noblesse Oblige" | "Wanderers Troupe" | "Gladiators Finale";
+export type ArtifactSet = "Ocean Hued Clam" | "Husk of Opulent Dreams" | "Emblem of Severed Fate" | "Shimenawas Reminiscence" | "Pale Flame" | "Tenacity of the Millelith" | "Heart of Depth" | "Blizzard Strayer" | "Crimson Witch of Flames" | "Lavawalker" | "Thundering Fury" | "Thundersmoother" | "Retracing Bolide" | "Archaic Petra" | "Viridescent Venerer" | "Maiden Beloved" | "Bloodstained Chivalry" | "Noblesse Oblige" | "Wanderer's Troupe" | "Gladiator's Finale";
 
 export type ArtifactDomain = "Domain of Guyun" | "Midsummer Courtyard" | "Valley of Remembrance" | "Hidden Palace of Zhou Formula" | "Peak of Vindagnyr" | "Ridge Watch" | "Momiji-Dyed Court" | "Slumbering Court" | "Clear Pool and Mountain Cavern";
 
-export type ArtifactStat = "ATK%" | "ATK" | "HP%" | "HP" | "DEF%" | "DEF" | "CRIT RATE" | "CRIT DMG" | "ER" | "EM" | "HYDRO BONUS" | "PYRO BONUS" | "GEO BONUS" | "ANEMO BONUS" | "ELECTRO BONUS" | "CRYO BONUS" | "PHYSICAL BONUS" | "HEALING BONUS";
+export type ArtifactStatType = "ATK%" | "ATK" | "HP%" | "HP" | "DEF%" | "DEF" | "CRIT RATE" | "CRIT DMG" | "ER" | "EM" | "HYDRO BONUS" | "PYRO BONUS" | "GEO BONUS" | "ANEMO BONUS" | "ELECTRO BONUS" | "CRYO BONUS" | "PHYSICAL BONUS" | "HEALING BONUS" | "NIL";

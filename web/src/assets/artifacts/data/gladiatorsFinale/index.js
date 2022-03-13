@@ -6,33 +6,33 @@ import sands from "./sands.png";
 
 export default {
   flower: {
-    chs: "乐团的晨光",
+    chs: "角斗士的留恋",
     url: flower,
   },
   plume: {
-    chs: "琴师的箭羽",
+    chs: "角斗士的归宿",
     url: plume,
   },
   sands: {
-    chs: "终幕的时计",
+    chs: "角斗士的希冀",
     url: sands,
   },
   goblet: {
-    chs: "吟游者之壶",
+    chs: "角斗士的酣醉",
     url: goblet,
   },
   circlet: {
-    chs: "指挥的礼帽",
+    chs: "角斗士的凯旋",
     url: circlet,
   },
-  chs: "流浪大地的乐团",
-  eng: "wandererTroupe",
+  chs: "角斗士的终幕礼",
+  eng: "gladiatorsFinale",
   minStar: 4,
   maxStar: 5,
   effectText: {
     chs: {
-      2: "元素精通提高80点。",
-      4: "装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。",
+      2: "攻击力提高18%。",
+      4: "装备该圣遗物套装的角色为单手剑、双手剑、长柄武器角色时，角色普通攻击造成的伤害提高35%。",
     },
   },
 };

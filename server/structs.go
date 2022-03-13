@@ -43,7 +43,7 @@ const (
 	Crimson_Witch_of_Flames   SetType = 8
 	Lavawalker                SetType = 9
 	Thundering_Fury           SetType = 10
-	Thundersoother            SetType = 11
+	Thundersmoother            SetType = 11
 	Retracing_Bolide          SetType = 12
 	Archaic_Petra             SetType = 13
 	Viridescent_Venerer       SetType = 14
@@ -65,8 +65,8 @@ const (
 )
 
 type Stat struct {
-	Type  StatType `json:"词条"`
-	Value float32  `json:"数值"`
+	Type  StatType `json:"stat"`
+	Value float32  `json:"value"`
 }
 
 type Artifact struct {
@@ -87,10 +87,10 @@ type DogFood struct {
 
 func (s Stat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
-		Type  string  `json:"词条"`
-		Value float32 `json:"数值"`
+		Type  string  `json:"stat"`
+		Value float32 `json:"value"`
 	}{
-		Type:  statTypeZN[s.Type],
+		Type:  statTypeEN[s.Type],
 		Value: s.Value,
 	})
 }
@@ -101,8 +101,8 @@ func (a Artifact) MarshalJSON() ([]byte, error) {
 	return json.Marshal(&struct {
 		Stars    int32
 		Lv       int32
-		Set      string `json:"套装"`
-		Slot     string `json:"位置"`
+		Set      string
+		Slot     string
 		Name     string
 		Exp      int32
 		MainStat Stat
@@ -110,8 +110,8 @@ func (a Artifact) MarshalJSON() ([]byte, error) {
 	}{
 		Stars:    a.Stars,
 		Lv:       a.Lv,
-		Set:      artifactSetZN[a.Set],
-		Slot:     slotHanzi[a.Slot],
+		Set:      artifactSetEN[a.Set],
+		Slot:     slotEN[a.Slot],
 		Name:     a.Name,
 		Exp:      a.Exp,
 		MainStat: a.MainStat,
@@ -121,11 +121,11 @@ func (a Artifact) MarshalJSON() ([]byte, error) {
 
 func (s *Stat) UnmarshalJSON(data []byte) error {
 	tmp := struct {
-		Type  string  `json:"词条"`
-		Value float32 `json:"数值"`
+		Type  string  `json:"stat"`
+		Value float32 `json:"value"`
 	}{}
 	err := json.Unmarshal(data, &tmp)
-	s.Type = ZNstatType[tmp.Type]
+	s.Type = ENstatType[tmp.Type]
 	s.Value = tmp.Value
 	return err
 }
@@ -135,8 +135,8 @@ func (a *Artifact) UnmarshalJSON(data []byte) error {
 	tmp := struct {
 		Stars    int32
 		Lv       int32
-		Set      string `json:"套装"`
-		Slot     string `json:"位置"`
+		Set      string
+		Slot     string
 		Name     string
 		Exp      int32
 		MainStat Stat
@@ -151,8 +151,8 @@ func (a *Artifact) UnmarshalJSON(data []byte) error {
 	a.Lv = tmp.Lv
 	a.Name = tmp.Name
 	a.Exp = tmp.Exp
-	a.Set = ZNartifactSet[tmp.Set]
-	a.Slot = ZNslotType[tmp.Slot]
+	a.Set = ENartifactSet[tmp.Set]
+	a.Slot = ENslotType[tmp.Slot]
 	a.MainStat = tmp.MainStat
 	a.SubStat = tmp.SubStat
 

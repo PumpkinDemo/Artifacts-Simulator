@@ -26,7 +26,7 @@ export default {
     url: circlet,
   },
   chs: "平息鸣雷的尊者",
-  eng: "thunderSmoother",
+  eng: "thundersmoother",
   minStar: 4,
   maxStar: 5,
   effectText: {

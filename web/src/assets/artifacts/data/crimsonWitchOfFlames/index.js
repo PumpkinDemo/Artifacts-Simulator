@@ -26,7 +26,7 @@ export default {
     url: circlet,
   },
   chs: "炽烈的炎之魔女",
-  eng: "crimsonWitch",
+  eng: "crimsonWitchOfFlames",
   minStar: 4,
   maxStar: 5,
   effectText: {
