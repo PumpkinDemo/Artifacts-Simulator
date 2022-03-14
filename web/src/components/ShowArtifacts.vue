@@ -1,6 +1,6 @@
 <template>
   <div class="showArtifacts" @click="showArtifacts">
-    <div class="artifact" v-for="(a, i) in artifactList">
+    <div class="artifact" v-for="(a, i) in artifactList" :key="i">
         <transition name="sudden">
             <div class="artifact-item star5" v-if="artifactType === 'artifacts' || i === focusedIndex" @click.stop="showDetail(i)">
                 <el-tooltip effect="light" placement="top-start" :disabled="artifactType === 'detail'">
@@ -9,7 +9,7 @@
                         <p style="text-indent: 2ch">{{ locale(a.set) + ' ' + locale(a.slot) }}</p>
                         <p style="font-weight: bold">{{ getStatContent(a.mainStat) }}</p>
                         <ul style="margin: 0; padding: 0 2ch">
-                            <li v-for="stat in a.subStats">
+                            <li v-for="stat in a.subStats" :key="stat">
                                 <p>{{ getStatContent(stat) }}</p>
                             </li>
                         </ul>
@@ -19,12 +19,12 @@
             </div>
         </transition>
         <transition name="fade">
-            <div class="artifact-detail" v-if="artifactType === 'detail' && i === focusedIndex">
+            <div class="artifact-detail" v-if="artifactType === 'detail' && i === focusedIndex" @click.stop="levelUp" >
                 <h4>{{ locale(a.name) }}</h4>
                 <p style="text-indent: 2ch">{{ locale(a.set) + ' ' + locale(a.slot) }}</p>
                 <p style="font-weight: bold">{{ getStatContent(a.mainStat) }}</p>
                 <ul style="margin: 0; padding: 0 2ch">
-                    <li v-for="stat in a.subStats">
+                    <li v-for="stat in a.subStats" :key="stat">
                         <p>{{ getStatContent(stat) }}</p>
                     </li>
                 </ul>
@@ -38,7 +38,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { locale } from "../locale";
 import { Language, Artifact, ArtifactStatNonnullable } from "../type";
-import { getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
+import { artifactJSON, getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
 
 @Component({})
 export default class ShowArtifacts extends Vue {
@@ -91,6 +91,23 @@ export default class ShowArtifacts extends Vue {
     showArtifacts(){
         console.log("SHOW ALL ARTIFACTS")
         this.artifactType = "artifacts";
+    }
+
+    levelUp(){
+        const embryo = artifactJSON(this.artifactList[this.focusedIndex])
+        const dogfoods = new Array(6).fill({stars:5, lv:8})
+        console.log(dogfoods)
+        fetch('/enhance', {
+            method: 'POST',
+            body: JSON.stringify({
+                dogFoods: dogfoods,
+                embryo: embryo
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+        })
     }
 }
 </script>
