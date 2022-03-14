@@ -75,7 +75,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Select, Button } from "element-ui";
 import { locale } from "../locale";
 import { Language, Artifact, ArtifactStatNonnullable } from "../type";
-import { getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
+import { artifactJSON, getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
 
 @Component({})
 export default class ShowArtifacts extends Vue {
@@ -153,6 +153,23 @@ export default class ShowArtifacts extends Vue {
 
     enterEnhanceInterface(){
         this.detailType = "enhancing";
+    }
+
+    levelUp(){
+        const embryo = artifactJSON(this.artifactList[this.focusedIndex])
+        const dogfoods = new Array(6).fill({stars:5, lv:8})
+        console.log(dogfoods)
+        fetch('/enhance', {
+            method: 'POST',
+            body: JSON.stringify({
+                dogFoods: dogfoods,
+                embryo: embryo
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+        })
     }
 }
 </script>
