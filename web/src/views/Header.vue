@@ -45,7 +45,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Select } from "element-ui";
 import { Language, ArtifactDomain } from "../type";
-import { locale, makeOptions, languageOptions } from "../locale";
+import { locale, makeOptions, languageOptions, availableLanguages } from "../locale";
 import { allDomains } from "../constant";
 
 @Component({})
@@ -69,12 +69,42 @@ export default class Header extends Vue {
       return (a: string) => locale(a, this.language);
   };
 
+  lower(domain: string){
+    return domain.toLowerCase().replace(/[\s']/g, '')
+  }
+
+  created(){
+    let { lang = "EN", domain = "" } = this.$route.query;
+
+    lang = (lang as string).toLowerCase();
+    const languages = availableLanguages.map(a => a.toLowerCase());
+    if(!languages.includes(lang)){
+      lang = "EN";
+    }
+    lang = lang.toUpperCase();
+    this.language = lang;
+
+    domain = (domain as string).toLowerCase();
+    const domains = allDomains.map(this.lower);
+    if(domains.includes(domain)){
+      domain = allDomains.find(a => this.lower(a) === domain) as string;
+    }
+    this.domain = domain as string;
+    this.$store.commit("alterDomain", domain);
+  }
+
   handleLanguageChange(lan: Language) {
     this.$store.commit("alterLanguage", lan);
+    this.$router.push({
+      query: Object.assign(JSON.parse(JSON.stringify(this.$route.query)), {lang: lan})
+    })
   }
 
   handleDomainChange(domain: string){
     this.$store.commit("alterDomain", domain);
+    this.$router.push({
+      query: Object.assign(JSON.parse(JSON.stringify(this.$route.query)), {domain: this.lower(domain)})
+    })
   }
 }
 </script>

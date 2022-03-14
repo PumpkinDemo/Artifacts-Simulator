@@ -267,6 +267,7 @@ func (a *Artifact) levelUp(dogFood []DogFood) {
 		}
 		exp -= expToLevelUp
 	}
+	a.MainStat.Value = mainStatMap[a.MainStat.Type][a.Lv];
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {

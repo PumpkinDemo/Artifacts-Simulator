@@ -2,9 +2,11 @@
   <div class="useResin">
     <div class="useResin-block useResin-block1 pseudobutton" @click="useResin(20)">
       {{ text20Resin }}
+      <img src="../assets/FragileResin.png"/>
     </div>
     <div class="useResin-block useResin-block2 pseudobutton" @click="useResin(40)">
       {{ text40Resin }}
+      <img src="../assets/CondensedResin.png"/>
     </div>
   </div>
 </template>
@@ -79,16 +81,22 @@ export default class UseResin extends Vue {
 
 .useResin {
   padding-top: 400px;
+  display: flex;
   &-block {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     min-height: 30px;
     line-height: 30px;
     font-size: 20px;
     font-weight: bold;
-    width: 250px;
+    min-width: 300px;
     background: rgba(255, 255, 255, 0.3);
     margin: auto;
     padding: 15px;
+    img {
+      height: 30px;
+      width: 30px;
+    }
   }
   &-block1 {
     margin-right: 50px;

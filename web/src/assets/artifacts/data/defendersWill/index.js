@@ -26,7 +26,7 @@ export default {
     url: circlet,
   },
   chs: "守护之心",
-  eng: "defenderWill",
+  eng: "defendersWill",
   minStar: 3,
   maxStar: 4,
   effectText: {

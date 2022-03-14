@@ -144,11 +144,11 @@ const slotMapper = {
 export function artifactFrom(obj: any): Artifact{
   return {
     stars: obj.Stars as number || 5,
-    level: isNil(obj.Lv)? obj.Lv as number: 0,
+    level: isNil(obj.Lv)? 0: obj.Lv as number,
     set: obj.Set as ArtifactSet || "Blizzard Strayer",
     slot: slotMapper.abbreviate[obj.Slot] as ArtifactSlot || "FLOWER",
     name: obj.Name as string || "Frost-Weaved Dignity",
-    exp: isNil(obj.Exp)? obj.Exp as number: 0,
+    exp: isNil(obj.Exp)? 0: obj.Exp as number,
     mainStat: statFrom(obj.MainStat),
     subStats: (obj.SubStat || []).map(statFrom).filter(Boolean)
   }

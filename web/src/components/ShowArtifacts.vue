@@ -7,7 +7,7 @@
                     <el-tooltip effect="light" placement="top-start" :disabled="artifactType === 'detail'">
                         <template #content>
                             <h4>{{ locale(a.name) }}</h4>
-                            <p style="text-indent: 2ch">{{ locale(a.set) + ' ' + locale(a.slot) }}</p>
+                            <p style="text-indent: 2ch">{{ locale(a.set) + ', ' + locale(a.slot) }}</p>
                             <p style="font-weight: bold">{{ getStatContent(a.mainStat) }}</p>
                             <ul style="margin: 0; padding: 0 2ch">
                                 <li v-for="stat in a.subStats">
@@ -21,13 +21,15 @@
             </transition>
             <transition name="fade">
                 <div class="artifact-detail" v-if="artifactType === 'detail' && i === focusedIndex">
+                    <p style="display: inline; background-color: white; color: rgba(0, 0, 0, 0.5); padding: 0 1ch;">
+                        {{` LV ${a.level} EXP ${a.exp} `}}
+                    </p>
                     <h4>{{ locale(a.name) }}</h4>
                     <p style="text-indent: 2ch">
-                        <p style="display: inline; background-color: white; color: rgba(0, 0, 0, 0.5); padding: 0;">LV{{a.level}}</p>
-                        {{ locale(a.set) + ' ' + locale(a.slot) }}
+                        {{ locale(a.set) + ', ' + locale(a.slot) }}
                     </p>
                     <p style="font-weight: bold">{{ getStatContent(a.mainStat) }}</p>
-                    <ul style="margin: 0; padding: 0 2ch">
+                    <ul style="margin: 0; padding: 0 1ch">
                         <li v-for="stat in a.subStats">
                             <p>{{ getStatContent(stat) }}</p>
                         </li>
@@ -45,7 +47,7 @@
                 <div class="enhance-selecter">
                     <el-select
                         class="dogfood-select"
-                        v-model="dogfood"
+                        v-model="dogfoodStr"
                         size="small"
                     >
                         <el-option
@@ -56,11 +58,14 @@
                         >
                         </el-option>
                     </el-select>
-                    <el-button round> {{ locale("Quick select") }} </el-button>
+                    <el-button round @click.stop="quickFill" size="small"> {{ locale("Quick select") }} </el-button>
                 </div>
                 <div class="enhance-dogfood">
+                    <div v-for="(a, i) in dogfood" class="dogfood">
+                        <img :class="a ? 'star'+a.stars: ''" :src="dogfoodUrls[i]"/>
+                    </div>
                 </div>
-                <div class="enhance-button pseudobutton" @click.stop="enhance()">
+                <div class="enhance-button pseudobutton" @click.stop="levelUp">
                     <i class="el-icon-loading" v-if="loading"></i>
                     {{ locale("Enhance") }}
                 </div>
@@ -75,7 +80,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Select, Button } from "element-ui";
 import { locale } from "../locale";
 import { Language, Artifact, ArtifactStatNonnullable } from "../type";
-import { artifactJSON, getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
+import { artifactFrom, artifactJSON, getArtifactImageUrl, allSets, allSlots, isPercentageStat } from "../constant";
 
 @Component({})
 export default class ShowArtifacts extends Vue {
@@ -83,7 +88,11 @@ export default class ShowArtifacts extends Vue {
 
     detailType: "enhancing" | "toEnhance"  = "toEnhance";
 
-    dogfood = "6*1";
+    dogfood: any[] = [];
+
+    dogfoodStr = "6*1";
+
+    dogfoodUrls: string[] = [];
 
     get dogfoodOptions(){
         const locale = this.locale;
@@ -103,7 +112,7 @@ export default class ShowArtifacts extends Vue {
 
     focusedIndex = 0;
 
-    loading = true;
+    loading = false;
 
     get language(){
         return this.$store.getters.language;
@@ -126,6 +135,11 @@ export default class ShowArtifacts extends Vue {
         }
     }
 
+    created(){
+        this.dogfood = Array(6).fill({stars: 1, lv: 0});
+        this.dogfoodUrls = this.dogfood.map(a => this.getRandomArtifactImage(a.stars));
+    }
+    
     getRandomArtifactImage(count: number){
         let star = Math.round(count)
         if (star <= 0)
@@ -134,9 +148,11 @@ export default class ShowArtifacts extends Vue {
             star = 5
         const sets = allSets[star];
         const indexSet = Math.floor(Math.random() * sets.length);
-        const indexSlot = Math.floor(Math.random() * 5);
+        const set = sets[indexSet];
+        const mereCircletSets = [ "Prayers for Illumination", "Prayers for Destiny", "Prayers for Wisdom", "Prayers to Springtime" ]
+        const slot = mereCircletSets.includes(set)? "CIRCLET": allSlots[Math.floor(Math.random() * 5)];
         
-        return getArtifactImageUrl(sets[indexSet], allSlots[indexSlot])
+        return getArtifactImageUrl(set, slot)
     }
 
     showDetail(i: number){
@@ -146,30 +162,88 @@ export default class ShowArtifacts extends Vue {
     }
 
     showArtifacts(){
-        console.log("SHOW ALL ARTIFACTS")
-        this.artifactType = "artifacts";
-        this.detailType = "toEnhance";
+        if ( this.artifactType === 'artifacts' ){
+            this.$emit('getOtherArtifacts')
+        } else {
+            console.log("SHOW ALL ARTIFACTS")
+            this.artifactType = "artifacts";
+            this.detailType = "toEnhance";
+        }
     }
 
     enterEnhanceInterface(){
         this.detailType = "enhancing";
     }
 
+    quickFill(){
+        const [stars, lv = 0] = this.dogfoodStr.split('*')[1].split('.');
+        this.dogfood = Array(6).fill({
+            stars: +stars, 
+            lv: +lv
+        });
+        this.dogfoodUrls = this.dogfood.map(a => this.getRandomArtifactImage(a.stars))
+        console.log(stars, lv, this.dogfood)
+    }
+
     levelUp(){
+        this.loading = true;
         const embryo = artifactJSON(this.artifactList[this.focusedIndex])
-        const dogfoods = new Array(6).fill({stars:5, lv:8})
-        console.log(dogfoods)
         fetch('/enhance', {
             method: 'POST',
             body: JSON.stringify({
-                dogFoods: dogfoods,
+                dogFoods: this.dogfood,
                 embryo: embryo
             })
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
+            this.loading = false;
+            console.log(res, artifactFrom(res))
+            this.updateArtifact(artifactFrom(res));
         })
+    }
+
+    updateArtifact(a: Artifact){
+        const { locale } = this;
+        type s = ArtifactStatNonnullable;
+        const embryo = this.artifactList[this.focusedIndex];
+        console.log(embryo, a)
+        if(embryo.level < a.level){
+            const isPercentage = isPercentageStat((a.mainStat as s).statType);
+            const round = (value: number) => isPercentage? Math.round(value * 10) / 10: Math.round(value);
+
+            let html = `
+                <h4> LV&nbsp;${embryo.level}&nbsp;→&nbsp;LV&nbsp;${a.level}  </h4>
+                <h5> ${locale((a.mainStat as s).statType)}:&nbsp;${round(embryo.mainStat.value)}&nbsp;→&nbsp;${round((a.mainStat as s).value)}  </h5>
+            `;
+
+            let subStats = (a.subStats as s[]).map((stat) => {
+                const originalStat = embryo.subStats.find((s: s) => stat.statType === s.statType);
+                let originalValue = originalStat? originalStat.value: 0;
+                const isPercentage = isPercentageStat(stat.statType);
+                const round = (value: number) => isPercentage? Math.round(value * 10) / 10: Math.round(value);
+                const res = {
+                    statType: locale(stat.statType),
+                    from: round(originalValue) + (isPercentage? '%': ''),
+                    to: round(stat.value) + (isPercentage? '%': '')
+                }
+                console.log(isPercentage, originalValue, round(originalValue), stat.value, round(stat.value), res)
+                return res;
+            }).filter(a => a.from !== a.to);
+
+            if(subStats.length){
+                html += subStats.map(stat => {
+                    return `<p> ${stat.statType}:&nbsp;${stat.from}&nbsp;→&nbsp;${stat.to}  </p>`
+                }
+                ).join('');
+            }
+
+            this.$alert(html, locale('Artifact level up'), {
+                dangerouslyUseHTMLString: true
+            });
+        }
+
+        this.artifactList[this.focusedIndex] = a;
     }
 }
 </script>
@@ -224,7 +298,7 @@ export default class ShowArtifacts extends Vue {
 }
 
 .showArtifacts {
-    padding: 4ch;
+    padding: 2ch;
     display: flex;
     flex-direction: column;
 
@@ -255,6 +329,9 @@ export default class ShowArtifacts extends Vue {
                 color: white;
                 font-size: large;
                 background-color: rgba(0, 0, 0, .5);
+                p, h4 {
+                    margin: 1ch 0;
+                }
             }
         }
     }
@@ -275,10 +352,23 @@ export default class ShowArtifacts extends Vue {
 
         &-bar {
             .enhance-selecter{
-
+                .dogfood-select{
+                    width: 200px;
+                    margin-right: 10px;
+                }
             }
             .enhance-dogfood{
-
+                display: flex;
+                justify-content: center;
+                .dogfood {
+                    margin: 10px;
+                    width: 70px;
+                    height: 70px;
+                    img {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
             }
             .enhance-button{
                 border-radius: 15px;

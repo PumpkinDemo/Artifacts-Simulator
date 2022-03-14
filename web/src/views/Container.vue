@@ -2,7 +2,7 @@
   <div class="container">
     <TabF v-if="type === 'TabF'" @pressF="pressF"/>
     <UseResin v-else-if="type === 'ConsumeResin'" @showArtifacts="showArtifacts"/>
-    <ShowArtifacts v-else-if="type === 'ShowArtifacts'"/>
+    <ShowArtifacts v-else-if="type === 'ShowArtifacts'" @getOtherArtifacts="getOtherArtifacts"/>
   </div>
 </template>
 
@@ -20,9 +20,15 @@ type ComponentType = "TabF" | "ConsumeResin" | "ShowArtifacts" | "EnhanceArtifac
 })
 export default class Container extends Vue {
   type: ComponentType = "TabF"
+
   pressF(){
     this.type = "ConsumeResin"
   }
+
+  getOtherArtifacts(){
+    this.type = "TabF"
+  }
+
   showArtifacts(){
     this.type = "ShowArtifacts"
   }
@@ -33,5 +39,7 @@ export default class Container extends Vue {
 .container {
   min-height: 600px;
   width: 100%;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, .1); 
 }
 </style>

@@ -27,7 +27,7 @@ export default {
   },
   chs: "遗馈",
   effect: "流放者",
-  eng: "exile",
+  eng: "theExile",
   minStar: 3,
   maxStar: 4,
   effectText: {

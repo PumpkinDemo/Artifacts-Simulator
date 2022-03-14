@@ -18,6 +18,8 @@ export const languageOptions = [
   },
 ];
 
+export const availableLanguages = ['CHS', 'EN'];
+
 export function makeOptions(texts: string[], language: Language): AppOptions {
   return texts.map((text) => {
     return {

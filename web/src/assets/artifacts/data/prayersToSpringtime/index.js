@@ -1,7 +1,7 @@
 import circlet from "./circlet.png";
 
 export default {
-  sands: {
+  circlet: {
     chs: "祭冰礼冠",
     url: circlet,
   },
