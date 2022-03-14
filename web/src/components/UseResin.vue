@@ -1,9 +1,9 @@
 <template>
   <div class="useResin">
-    <div class="useResin-block useResin-block1" @click="useResin(20)">
+    <div class="useResin-block useResin-block1 pseudobutton" @click="useResin(20)">
       {{ text20Resin }}
     </div>
-    <div class="useResin-block useResin-block2" @click="useResin(40)">
+    <div class="useResin-block useResin-block2 pseudobutton" @click="useResin(40)">
       {{ text40Resin }}
     </div>
   </div>
@@ -32,7 +32,7 @@ export default class UseResin extends Vue {
   useResin(resins: 20 | 40) {
     console.log("Use resin", resins)
     let domain = this.$store.getters.domain
-    
+
     if(!domain){
       domain = 'Domain of Guyun';
       this.$store.commit('alterDomain', domain);

@@ -6,6 +6,7 @@
         v-model="language"
         :placeholder="locale('Please select a language')"
         @change="handleLanguageChange"
+        size="small"
       >
         <el-option
           v-for="item in languageOptions"
@@ -23,6 +24,7 @@
         v-model="domain"
         :placeholder="locale('Please select a domain', language)"
         @change="handleDomainChange"
+        size="small"
       >
         <el-option
           v-for="item in domainOptions"
@@ -81,6 +83,7 @@ export default class Header extends Vue {
 .header {
   display: flex;
   flex-direction: row;
+  padding: 20px 0;
   
   &-left{
     flex: 2;
