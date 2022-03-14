@@ -4,7 +4,7 @@
       <el-select
         class="language-select"
         v-model="language"
-        :placeholder="locale('Please select a language', language)"
+        :placeholder="locale('Please select a language')"
         @change="handleLanguageChange"
       >
         <el-option
@@ -40,9 +40,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Select } from "element-ui";
-import { Language } from "../type";
+import { Language, ArtifactDomain } from "../type";
 import { locale, makeOptions, languageOptions } from "../locale";
 import { allDomains } from "../constant";
 
@@ -50,15 +50,22 @@ import { allDomains } from "../constant";
 export default class Header extends Vue {
   languageOptions = languageOptions;
 
+  language = this.$store.getters.language;
+
+  domain = "";
+
+  @Watch("$store.getters.domain")
+  changeDomain(domain: ArtifactDomain){
+    this.domain = domain;
+  }
+
   get domainOptions() {
     return makeOptions(allDomains, this.language);
   }
 
-  locale = locale;
-
-  language = this.$store.getters.language;
-
-  domain = "";
+  get locale(){
+      return (a: string) => locale(a, this.language);
+  };
 
   handleLanguageChange(lan: Language) {
     this.$store.commit("alterLanguage", lan);

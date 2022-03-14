@@ -6,11 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     language: "EN",
-    domain: ""
+    domain: "",
+    gainedArtifacts: []
   },
   getters: {
     language: state => state.language,
-    domain: state => state.domain
+    domain: state => state.domain,
+    gainedArtifacts: state => state.gainedArtifacts
   },
   mutations: {
     alterLanguage: (state, language) => {
@@ -20,6 +22,10 @@ export default new Vuex.Store({
     alterDomain: (state, domain) => {
       console.log("ALTER DOMAIN TO", domain)
       state.domain = domain;
+    },
+    alterGainedArtifacts: (state, artifacts) => {
+      console.log(`GAIN ${artifacts.length} ARTIFACTS`)
+      state.gainedArtifacts = artifacts;
     }
   },
   actions: {},

@@ -1,8 +1,10 @@
 import chs from "./chs.json";
+import en from "./en.json";
 import { StringMapper, Language, AppOptions } from "../type";
 
 const mapper = {
   CHS: chs as StringMapper,
+  EN: en as StringMapper,
 };
 
 export const languageOptions = [
@@ -26,9 +28,5 @@ export function makeOptions(texts: string[], language: Language): AppOptions {
 }
 
 export function locale(text: string, language: Language): string {
-  if (language === "EN") {
-    return text;
-  } else {
-    return mapper[language][text] || text;
-  }
+  return mapper[language][text] || text;
 }

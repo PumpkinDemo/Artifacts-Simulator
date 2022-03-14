@@ -13,6 +13,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { locale } from "../locale";
 import { Language } from "../type";
+import { artifactFrom } from "../constant";
 
 @Component({})
 export default class UseResin extends Vue {
@@ -29,15 +30,23 @@ export default class UseResin extends Vue {
   }
 
   useResin(resins: 20 | 40) {
-    console.log("use resin", resins)
-    let domain = this.$store.getters.domain || 'Domain of Guyun'
+    console.log("Use resin", resins)
+    let domain = this.$store.getters.domain
+    
+    if(!domain){
+      domain = 'Domain of Guyun';
+      this.$store.commit('alterDomain', domain);
+    }
+    
     fetch('/gain', {
       method: 'post',
       body: JSON.stringify({ resin: resins, domain:domain })
     })
     .then(res => res.json())
     .then(res => {
+      this.$store.commit('alterGainedArtifacts', res.map(artifactFrom));
       console.log(res)
+      this.$emit('showArtifacts')
     })
   }
 }
