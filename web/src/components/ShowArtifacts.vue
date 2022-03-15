@@ -62,10 +62,10 @@
                 </div>
                 <div class="enhance-dogfood">
                     <div v-for="(a, i) in dogfood" class="dogfood">
-                        <img :class="a ? 'star'+a.stars: ''" :src="dogfoodUrls[i]"/>
+                        <img :class="a ? 'star'+a.stars: ''" :src="dogfoodUrls[i]"></img>
                     </div>
                 </div>
-                <div class="enhance-button pseudobutton" @click.stop="levelUp">
+                <div class="enhance-button" :class="{ 'pseudobutton': enhanceable, 'disabledbutton': !enhanceable }" @click.stop="enhanceable && levelUp()">
                     <i class="el-icon-loading" v-if="loading"></i>
                     {{ locale("Enhance") }}
                 </div>
@@ -133,6 +133,10 @@ export default class ShowArtifacts extends Vue {
             const value = isPercentage? Math.round(stat.value * 10) / 10: Math.round(stat.value)
             return statType + ': ' + value + (isPercentage? '%': '')
         }
+    }
+
+    get enhanceable(){
+        return this.artifactList[this.focusedIndex].level < 20;
     }
 
     created(){
@@ -214,7 +218,11 @@ export default class ShowArtifacts extends Vue {
 
             let html = `
                 <h4> LV&nbsp;${embryo.level}&nbsp;→&nbsp;LV&nbsp;${a.level}  </h4>
-                <h5> ${locale((a.mainStat as s).statType)}:&nbsp;${round(embryo.mainStat.value)}&nbsp;→&nbsp;${round((a.mainStat as s).value)}  </h5>
+                <h5> 
+                    ${locale((a.mainStat as s).statType)}:&nbsp;
+                    ${round(embryo.mainStat.value)  + (isPercentage? '%': '') }&nbsp;→&nbsp;
+                    ${round((a.mainStat as s).value)  + (isPercentage? '%': '')}
+                </h5>
             `;
 
             let subStats = (a.subStats as s[]).map((stat) => {
@@ -222,13 +230,11 @@ export default class ShowArtifacts extends Vue {
                 let originalValue = originalStat? originalStat.value: 0;
                 const isPercentage = isPercentageStat(stat.statType);
                 const round = (value: number) => isPercentage? Math.round(value * 10) / 10: Math.round(value);
-                const res = {
+                return {
                     statType: locale(stat.statType),
                     from: round(originalValue) + (isPercentage? '%': ''),
                     to: round(stat.value) + (isPercentage? '%': '')
-                }
-                console.log(isPercentage, originalValue, round(originalValue), stat.value, round(stat.value), res)
-                return res;
+                };
             }).filter(a => a.from !== a.to);
 
             if(subStats.length){
@@ -243,7 +249,7 @@ export default class ShowArtifacts extends Vue {
             });
         }
 
-        this.artifactList[this.focusedIndex] = a;
+        Object.assign(this.artifactList[this.focusedIndex], a);
     }
 }
 </script>

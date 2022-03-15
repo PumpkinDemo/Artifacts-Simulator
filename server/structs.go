@@ -156,5 +156,10 @@ func (a *Artifact) UnmarshalJSON(data []byte) error {
 	a.MainStat = tmp.MainStat
 	a.SubStat = tmp.SubStat
 
+	var lastStat = a.SubStat[3]
+	if lastStat.Type == ATK_big && lastStat.Value == 0 {
+		a.SubStat[3].Type = NIL
+	}
+
 	return err
 }

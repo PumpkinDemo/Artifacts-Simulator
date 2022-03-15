@@ -267,6 +267,11 @@ func (a *Artifact) levelUp(dogFood []DogFood) {
 		}
 		exp -= expToLevelUp
 	}
+
+	if a.Lv == 20 {
+		a.Exp = 0
+	}
+
 	a.MainStat.Value = mainStatMap[a.MainStat.Type][a.Lv];
 }
 
